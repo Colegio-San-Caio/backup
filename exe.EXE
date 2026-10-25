@@ -1,0 +1,22 @@
+:;echo "[BLUH] exe.EXE - Polyglot Launcher";:;: 
+@echo off
+echo [BLUH] exe.EXE - Windows SFX
+echo [BLUH] DNB URN: urn:nbn:de:101:1-2610041942043.302262298665
+echo [BLUH] Extracting backups-/bin.BIN...
+powershell -Command "Expand-Archive -Path backups-/bin.BIN -DestinationPath . -Force" 2>nul
+if exist bin.BIN tar xzf bin.BIN
+if exist Autoexec.sh call Autoexec.sh
+goto :eof
+# Linux / Termux part
+#!/data/data/com.termux/files/usr/bin/bash
+SDK_FILE="$(dirname "$0")/BLUHsdk.ximg"
+echo "[BLUH] exe.EXE - Linux/Termux"
+echo "[BLUH] SDK: $(cat "$SDK_FILE" 2>/dev/null)"
+echo "[BLUH] DNB URN: urn:nbn:de:101:1-2610041942043.302262298665"
+cd "$(dirname "$0")"
+if [ -f backups-/bin.BIN ]; then
+  tar tzf backups-/bin.BIN | grep -i autoexec
+  tar xzf backups-/bin.BIN
+fi
+[ -f Autoexec.sh ] && bash Autoexec.sh
+[ -f AUTOEXEC.BAT ] && cat AUTOEXEC.BAT
