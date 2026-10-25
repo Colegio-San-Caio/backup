@@ -1,0 +1,13 @@
+name: autoexec
+on:
+  schedule:
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          ls -lh backups-/bin.BIN
+          echo "autoexec check $(date)"
