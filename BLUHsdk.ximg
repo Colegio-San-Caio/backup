@@ -1,0 +1,5 @@
+BLUH-URN: urn:nbn:de:101:1-2610041942043.302262298665
+SRC: ~/OQM/bin.BIN + CHECKSUM
+DST: backups-/bin.BIN
+BUILD: tar -czf backups-/bin.BIN bin.BIN CHECKSUM
+TERMUX-SDK: termux-packages shallow clone
