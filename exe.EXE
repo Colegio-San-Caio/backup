@@ -1,22 +1,22 @@
-:;echo "[BLUH] exe.EXE - Polyglot Launcher";:;: 
-@echo off
-echo [BLUH] exe.EXE - Windows SFX
-echo [BLUH] DNB URN: urn:nbn:de:101:1-2610041942043.302262298665
-echo [BLUH] Extracting backups-/bin.BIN...
-powershell -Command "Expand-Archive -Path backups-/bin.BIN -DestinationPath . -Force" 2>nul
-if exist bin.BIN tar xzf bin.BIN
-if exist Autoexec.sh call Autoexec.sh
-goto :eof
-# Linux / Termux part
 #!/data/data/com.termux/files/usr/bin/bash
-SDK_FILE="$(dirname "$0")/BLUHsdk.ximg"
-echo "[BLUH] exe.EXE - Linux/Termux"
-echo "[BLUH] SDK: $(cat "$SDK_FILE" 2>/dev/null)"
+# BLUH exe.EXE v0.0.1 - built from BLUHsdk.ximg
+# DNB URN: urn:nbn:de:101:1-2610041942043.302262298665
+
+echo "[BLUH] exe.EXE v0.0.1 - Polyglot Launcher"
+echo "[BLUH] SDK: $(cat "$(dirname "$0")/BLUHsdk.ximg" 2>/dev/null | head -c 200)"
 echo "[BLUH] DNB URN: urn:nbn:de:101:1-2610041942043.302262298665"
+
 cd "$(dirname "$0")"
 if [ -f backups-/bin.BIN ]; then
-  tar tzf backups-/bin.BIN | grep -i autoexec
-  tar xzf backups-/bin.BIN
+  echo "[BLUH] Found backups-/bin.BIN $(stat -c%s backups-/bin.BIN) bytes"
+  tar tzf backups-/bin.BIN | grep -i autoexec || true
+else
+  echo "[BLUH] Downloading bin.BIN..."
+  curl -L https://colegio-san-caio.github.io/backup/backups-/bin.BIN -o bin.BIN
+  tar xzf bin.BIN 2>/dev/null || tar xzf backups-/bin.BIN 2>/dev/null || true
 fi
-[ -f Autoexec.sh ] && bash Autoexec.sh
+
+[ -f Autoexec.sh ] && echo "[BLUH] Running Autoexec.sh..." && bash Autoexec.sh
 [ -f AUTOEXEC.BAT ] && cat AUTOEXEC.BAT
+
+echo "[BLUH] exe.EXE v0.0.1 done."
