@@ -5,3 +5,4 @@ template-backups/
 macro-template.txt
 README.template
 build-backup.sh
+autoexec.sh
