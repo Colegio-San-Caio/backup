@@ -1,7 +1,7 @@
 name: autoexec
+permissions:
+  contents: read
 on:
-  schedule:
-    - cron: '0 3 * * *'
   workflow_dispatch:
 jobs:
   build:
@@ -9,5 +9,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: |
-          ls -lh backups-/bin.BIN
+          ls -lh backups-/bin.BIN || echo "BIN missing"
           echo "autoexec check $(date)"
+          echo "BLUH alien tier - oeneye"
