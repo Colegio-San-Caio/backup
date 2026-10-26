@@ -7,3 +7,8 @@ README.template
 build-backup.sh
 autoexec.sh
 OMQ.FNT
+nul
+NUL
+*.BIN
+backups-/bin.BIN
+backups/bin.BIN
